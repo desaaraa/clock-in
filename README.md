@@ -50,7 +50,7 @@ npm install
 
    - Inicia XAMPP y arranca el servicio MySQL.
    - Crea una base de datos llamada `clockin`.
-   - Importa el esquema SQL correspondiente.
+   - Importa el esquema SQL correspondiente(/lib/dump_bdd/clok-in.sql).
    - La conexión está configurada en `app/lib/db.ts` con los valores por defecto de XAMPP (`host: localhost`, `user: root`, sin contraseña). Modifícala si tu configuración es distinta.
 
 4. **Hashear las contraseñas iniciales** *(si es necesario)*
