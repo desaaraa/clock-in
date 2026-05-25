@@ -1,0 +1,203 @@
+/* app/login.module.css */
+.contenedorPrincipal {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  font-family: system-ui, sans-serif;
+  background-color: #f9fafb;
+}
+
+/* LADO IZQUIERDO: Fondo Azul + Calendario */
+.ladoIzquierdo {
+  display: none; /* Se oculta en móviles */
+  width: 50%;
+  position: relative; /* Necesario para colocar las fotos encima */
+  overflow: hidden; /* Corta las fotos si se salen del borde */
+
+  /* Fondo azul degradado sobre la foto del calendario */
+  background-image:
+    linear-gradient(to bottom right, rgba(254, 195, 0, 0.75), rgba(231, 215, 183, 0.65)), 
+    url('/images/Imagen1.jpg');
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  color: white;
+  text-align: center;
+}
+
+/* Si la pantalla es grande (ordenador), mostramos el lado izquierdo */
+@media (min-width: 768px) {
+  .ladoIzquierdo {
+    display: flex;
+  }
+}
+
+/* Contenido (Título y Texto) por encima del mosaico */
+.contenidoIzquierdo {
+  position: relative;
+  z-index: 10; /* Asegura que el texto quede ENCIMA de las fotos */
+}
+
+.tituloPrincipal {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+
+/* --- ESTILOS DEL MOSAICO DE IMÁGENES --- */
+
+/* Contenedor invisible que ocupa todo el lado izquierdo */
+.contenedorMosaico {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Hace que los clics traspasen las fotos */
+  z-index: 1; /* Queda entre el fondo y el texto */
+}
+
+/* Estilo base para todas las fotos del mosaico */
+.imagenMosaico {
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  border-radius: 4px; /* Un pequeño borde redondeado */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  opacity: 0.85; /* Un poco transparentes para integrarse */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+
+/* POSICIONES INDIVIDUALES DE LAS FOTOS */
+
+/* Foto 1 (image2.jpg) - Arriba a la izquierda */
+.img1 {
+  background-image: url('/images/imagen2.jpg');
+  top: 4%;
+  left: 40%;
+  width: 20%;
+  height: 25%;
+}
+
+/* Foto 2 (image3.jpg) - Arriba a la derecha (vertical) */
+.img2 {
+  background-image: url('/images/imagen3.jpg');
+  top:  15%;
+  right:    6%;
+  width: 15%;
+  height: 35%;
+}
+
+/* Foto 3 (image4.jpg) - Centro izquierda */
+.img3 {
+  background-image: url('/images/imagen4.jpg');
+  top: 25%;
+  left: 1%;
+  width: 25%;
+  height: 20%;
+}
+
+
+/* Foto 6 (image7.jpg) - Abajo izquierda */
+.img6 {
+  background-image: url('/images/imagen7.jpg');
+  bottom:  10%;
+  left: 7%;
+  width: 20%;
+  height: 30%;
+}
+
+/* Foto 7 (image8.jpg) - Abajo centro */
+.img7 {
+  background-image: url('/images/imagen8.jpg');
+  bottom: 2%;
+  left: 40%;
+  width: 25%;
+  height: 20%;
+}
+
+/* Foto 8 (image9.jpg) - Abajo derecha */
+.img8 {
+  background-image: url('/images/imagen9.jpg');
+  bottom: 8%;
+  right: 5%;
+  width: 18%;
+  height: 25%;
+}
+
+
+/* LADO DERECHO (sin cambios) */
+.ladoDerecho {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* En ordenador, el lado derecho ocupa la otra mitad (50%) */
+@media (min-width: 768px) {
+  .ladoDerecho {
+    width: 50%;
+  }
+}
+
+/* RESTO DE ESTILOS (cajaDelFormulario, etc.) SE MANTIENEN IGUAL QUE ANTES */
+.cajaDelFormulario {
+  width: 100%;
+  max-width: 28rem;
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.grupoDeInput {
+  margin-bottom: 1.5rem;
+}
+
+.etiqueta {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.campoDeTexto {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db;
+  outline: none;
+  background-color: #f9fafb;
+}
+
+.campoDeTexto:focus {
+  border-color: #2563eb; /* Borde azul al pinchar encima */
+  background-color: white;
+}
+
+.botonDeEnviar {
+  width: 100%;
+  background-color: #000000;
+  color: white;
+  font-weight: bold;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.botonDeEnviar:hover {
+  background-color: #1d4ed8;
+}

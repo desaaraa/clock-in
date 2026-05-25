@@ -1,0 +1,522 @@
+/* app/dashboard/dashboard.module.css */
+
+.contenedorPrincipal {
+  min-height: 100vh;
+  background-color: #fef7e0; 
+  font-family: system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* NAVBAR */
+.navbar {
+  background-color: #fde047; 
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between; /* Separa el grupoIzquierdo del navUsuario */
+  align-items: center;
+  border-bottom: 2px solid #ca8a04;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra un poco más marcada */
+}
+
+/* Agrupa el logo y los enlaces */
+.grupoIzquierdo {
+  display: flex;
+  align-items: center;
+  gap: 3rem; 
+}
+
+.logoContainer img {
+  height: 50px; 
+  width: auto;
+}
+
+/* Enlaces agrupados a la izquierda */
+.navLinksIzquierda {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+/* Enlace directo en el nav (no desplegable) */
+.navLink {
+  color: #1f2937;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.navLink:hover {
+  text-decoration: underline;
+}
+
+/* MENÚS DESPLEGABLES */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* El botón que se ve en la barra */
+.dropbtn {
+  background-color: transparent;
+  border: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #1f2937;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+  text-decoration: none;
+}
+
+.dropbtn:hover {
+  background-color: rgba(255, 255, 255, 0.4); 
+}
+
+/* El "cuadradito" que baja */
+.dropdownContent {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #ffffff;
+  min-width: 180px;
+  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1), 0px 4px 6px -2px rgba(0,0,0,0.05);
+  z-index: 10;
+  border-radius: 8px; 
+  border: 1px solid #e5e7eb; 
+  overflow: hidden;
+}
+
+/* Variante para el menú del usuario (para que no se salga de la pantalla por la derecha) */
+.dropdownContentUser {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #ffffff;
+  min-width: 180px;
+  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+  z-index: 10;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+}
+
+.dropdownContent a, .dropdownContentUser a {
+  color: #374151;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 0.95rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.dropdownContent a:hover, .dropdownContentUser a:hover {
+  background-color: #f3f4f6; /* Gris muy clarito al pasar el ratón */
+  color: #111827;
+  font-weight: 500;
+}
+
+/* Mostrar los menús */
+.dropdown:hover .dropdownContent { display: block; }
+.dropdown:hover .dropdownContentUser { display: block; }
+
+
+/* Botón de Menú Hamburguesa (oculto en PC) */
+.menuHamburguesa {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.menuMovil {
+  display: none;
+}
+
+
+/* CONTENIDO PRINCIPAL */
+.contenido {
+  flex: 1;
+  padding: 4rem 2rem; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem; 
+}
+
+/* Botón de Fichaje */
+.botonFichar {
+  background-color: #fde047;
+  border: 3px solid #1f2937; /* Borde un poco más suave que negro puro */
+  border-radius: 20px;
+  padding: 1rem 4rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.1s, background-color 0.2s;
+  color: #1f2937;
+}
+
+.botonFichar:hover {
+  background-color: #fef08a; /* Se aclara un poco al pasar el ratón */
+}
+
+.botonFichar:active {
+  transform: scale(0.95);
+}
+
+/* Badge para notificaciones en el nav */
+.badgeNav {
+  background: #ef4444;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 6px;
+  margin-left: 4px;
+  line-height: 1.4;
+}
+
+/* Contenedor de las dos cajas */
+.contenedorCajas {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Fila superior con Horario + Equipo en paralelo */
+.filaDoble {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+}
+
+/* Estilo común para las cajas (Horario y Equipo) */
+.cajaInfo {
+  background-color: #fde047;
+  border: 2px solid #1f2937;
+  border-radius: 12px;
+  padding: 1.5rem;
+  flex: 1;
+  min-width: 0;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+/* Caja ancha para notificaciones (fila inferior) */
+.cajaInfoAncha {
+  background-color: #fde047;
+  border: 2px solid #1f2937;
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.cajaInfoAncha .listaScroll {
+  max-height: 200px;
+}
+
+.cajaInfo h2,
+.cajaInfoAncha h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Badge dentro de los títulos de caja */
+.badgeCaja {
+  background: #ef4444;
+  color: #fff;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 8px;
+}
+
+/* Enlace “Ver todas” al pie de la caja de notificaciones */
+.verTodo {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 13px;
+  color: #92400e;
+  font-weight: 700;
+  text-decoration: none;
+  align-self: flex-start;
+}
+
+.verTodo:hover {
+  text-decoration: underline;
+}
+
+/* Botón fichar con variante Salida */
+.botonFicharSalida {
+  background-color: #1f2937 !important;
+  color: #fde047 !important;
+  border-color: #fde047 !important;
+}
+
+.botonFicharSalida:hover {
+  background-color: #374151 !important;
+}
+
+.botonFichar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* La zona interior que hace scroll */
+.listaScroll {
+  overflow-y: auto; 
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; 
+  padding-right: 0.5rem; 
+}
+
+/* Personalizar la barra de scroll */
+.listaScroll::-webkit-scrollbar {
+  width: 8px;
+}
+.listaScroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.listaScroll::-webkit-scrollbar-thumb {
+  background-color: #ca8a04;
+  border-radius: 4px;
+}
+
+/* Cada fila dentro de la caja */
+.filaInfo {
+  background-color: #fef7e0;
+  border: 1px solid #d1d5db; 
+  border-radius: 20px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  color: #374151;
+}
+
+.fechaFila {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.fechaFila span:first-child { 
+  font-size: 1.2rem; 
+  font-weight: bold;
+  color: #111827;
+}
+
+.contenidoCompacto {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.panelDetalle {
+  width: 100%;
+  max-width: 900px;
+  background: white;
+  border: 2px solid #fde047;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.panelDetalle h1,
+.panelDetalle h2 {
+  margin-top: 0;
+  color: #1f2937;
+}
+
+.datosGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.datosGrid div {
+  background: #fef7e0;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.datosGrid span {
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+.datosGrid strong {
+  color: #111827;
+}
+
+.formVacaciones {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(180px, 1fr)) auto;
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: 1.5rem;
+}
+
+.formVacaciones label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-weight: 700;
+  color: #374151;
+}
+
+.formVacaciones input {
+  min-height: 38px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 0.45rem 0.65rem;
+  font: inherit;
+}
+
+.botonAccion,
+.accionesFila button {
+  min-height: 38px;
+  border: 1px solid #ca8a04;
+  border-radius: 6px;
+  background: #fde047;
+  color: #1f2937;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.45rem 0.9rem;
+}
+
+.listaVacaciones {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.filaValidacion {
+  background-color: #fef7e0;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+
+.filaValidacion div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.accionesFila {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.textoVacio {
+  color: #6b7280;
+  margin: 0;
+}
+
+/* RESPONSIVE (MÓVILES) */
+@media (max-width: 768px) {
+  .navLinksIzquierda, .navUsuario {
+    display: none; 
+  }
+  .menuHamburguesa {
+    display: block; 
+  }
+
+  .menuMovil {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    background: #fde047;
+    border-bottom: 2px solid #ca8a04;
+    padding: 0.75rem 1rem;
+  }
+
+  .menuMovil a,
+  .menuMovil button {
+    background: #fef7e0;
+    border: 1px solid #ca8a04;
+    border-radius: 8px;
+    color: #1f2937;
+    font: inherit;
+    font-weight: 700;
+    padding: 0.7rem 0.85rem;
+    text-align: left;
+    text-decoration: none;
+  }
+  
+  .contenido {
+    padding: 2rem 1rem; 
+    gap: 2rem;
+  }
+
+  .contenedorCajas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filaDoble {
+    flex-direction: column;
+  }
+
+  .cajaInfo {
+    width: 100%;
+    height: auto;
+    min-height: 250px;
+  }
+
+  .contenidoCompacto {
+    padding: 1rem;
+  }
+
+  .panelDetalle {
+    padding: 1rem;
+  }
+
+  .datosGrid,
+  .formVacaciones {
+    grid-template-columns: 1fr;
+  }
+
+  .filaValidacion {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

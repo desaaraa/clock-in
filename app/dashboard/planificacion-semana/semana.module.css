@@ -1,0 +1,42 @@
+/* app/dashboard/planificacion-semana/semana.module.css */
+
+.limitadorAncho { width: 70%; margin: 0 auto; box-sizing: border-box; padding: 2rem 1.5rem 0; }
+
+.navbarPlanificacion { display: flex; justify-content: space-between; align-items: center; background: white; padding: 15px 20px; border-radius: 10px; border: 2px solid #fde047; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); gap: 0.5rem; }
+.titulosCentrados { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; flex: 1; min-width: 0; text-align: center; }
+.nombreEmpleado { margin: 0; font-size: 1.4rem; color: #111827; font-weight: bold; word-break: break-word; }
+.tituloMesAnio { margin: 0; font-size: 1rem; color: #4b5563; font-weight: normal; word-break: break-word; }
+.botonNav { padding: 8px 14px; background-color: #fde047; border: 1px solid #ca8a04; border-radius: 6px; cursor: pointer; font-weight: bold; white-space: nowrap; flex-shrink: 0; }
+.botonNav:hover { background-color: #fef08a; }
+
+@media (max-width: 768px) {
+  .limitadorAncho { width: 100%; padding: 1rem 0.75rem 0; }
+  .navbarPlanificacion { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+  .titulosCentrados { order: -1; }
+  .botonNav { width: 100%; text-align: center; padding: 12px; font-size: 1rem; }
+  .nombreEmpleado { font-size: 1.2rem; }
+  .tituloMesAnio { font-size: 0.9rem; }
+  .semanaNombre { width: 70px; font-size: 11px; padding-left: 8px; }
+  .diaLabel { width: 70px; font-size: 11px; padding-left: 8px; }
+  .bloqueHora span { font-size: 9px; }
+}
+
+.ganttScrollArea { overflow-x: auto; background: white; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 1px solid #e5e7eb; padding: 15px; margin-bottom: 30px; }
+.ganttInner { min-width: 800px; }
+
+.semanaBlock { margin-bottom: 20px; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+
+.semanaTitulo { display: flex; background: #fde047; font-weight: bold; font-size: 13px; border-bottom: 1px solid #ca8a04; align-items: center; height: 35px; }
+.semanaNombre { width: 100px; padding-left: 15px; } /* Ajustado para el nombre del día */
+.semanaHoras { flex: 1; display: flex; height: 100%; }
+.bloqueHora { flex: 1; position: relative; display: flex; align-items: center; border-left: 1px solid #ca8a04; }
+.bloqueHora span { color: #1f2937; font-size: 11px; padding-left: 4px; }
+.bloqueHora::after { content: ""; position: absolute; left: 50%; top: 60%; bottom: 0; width: 1px; background-color: rgba(202, 138, 4, 0.4); }
+
+.filaDia { display: flex; align-items: center; border-bottom: 1px solid #fafafa; height: 40px; }
+.diaLabel { width: 100px; font-size: 12px; font-weight: bold; padding-left: 15px; background: white; z-index: 5; text-transform: capitalize; } /* Ajustado para el nombre del compi */
+
+.carril { flex: 1; height: 28px; position: relative; background: #f9f9f9; border-radius: 4px; overflow: hidden; }
+.malla { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: linear-gradient(to right, #e5e7eb 1px, transparent 1px); background-size: 2.0833% 100%; }
+
+.barra { position: absolute; top: 0; height: 100%; display: flex; align-items: center; justify-content: center; color: #1f2937; font-weight: bold; font-size: 11px; border-radius: 3px; box-shadow: inset 0 0 5px rgba(0,0,0,0.1); }

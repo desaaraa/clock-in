@@ -1,0 +1,243 @@
+/* app/dashboard/gestion-horarios/gestion.module.css */
+
+.panelControl {
+  background-color: white;
+  border: 2px solid #fde047;
+  border-radius: 10px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.tituloPanel {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: #1f2937;
+  border-bottom: 2px solid #fef08a;
+  padding-bottom: 0.5rem;
+}
+
+.formulario {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: flex-end;
+}
+
+.grupoInput {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.grupoInput label {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #4b5563;
+}
+
+.grupoInput select, .grupoInput input {
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: #f9fafb;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: #1f2937;
+}
+
+.grupoInput select:focus, .grupoInput input:focus {
+  outline: none;
+  border-color: #ca8a04;
+  background-color: white;
+}
+
+.botonAsignar {
+  padding: 0.6rem 1.5rem;
+  background-color: #ca8a04;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  height: 40px; /* Para que alinee con los inputs */
+  transition: background-color 0.2s;
+}
+
+.botonAsignar:hover {
+  background-color: #a16207;
+}
+
+.alerta {
+  background-color: #fee2e2;
+  color: #991b1b;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.noSelect {
+  user-select: none;
+}
+
+.toolbarPintar {
+  display: grid;
+  gap: 1rem;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-left: 4px solid #ca8a04;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.06);
+}
+
+.toolbarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.toolbarTitulo {
+  margin: 0 0 0.25rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.toolbarTexto {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #4b5563;
+}
+
+.mensajeEdicion {
+  margin: 0;
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #92400e;
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.herramientasContainer {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.herramientaGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.herramientaGroup label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #374151;
+  text-transform: uppercase;
+}
+
+.herramientaGroup select {
+  width: 100%;
+  min-height: 38px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #f9fafb;
+  color: #111827;
+  font: inherit;
+  padding: 0.45rem 0.65rem;
+}
+
+.herramientaGroup select:focus {
+  outline: none;
+  border-color: #ca8a04;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(202, 138, 4, 0.14);
+}
+
+.gridInteractivo {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(48, minmax(0, 1fr));
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.slotInteractivo {
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  background: transparent;
+}
+
+.slotOcupado {
+  cursor: not-allowed;
+  background: rgba(202, 138, 4, 0.08);
+}
+
+.barraGhost {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #111827;
+  opacity: 0.85;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.barraEditable {
+  z-index: 4;
+  gap: 0.35rem;
+  padding: 0 4px;
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+.codigoTurno {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.botonBorrarTurno {
+  flex-shrink: 0;
+  border: 1px solid rgba(127, 29, 29, 0.25);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.88);
+  color: #7f1d1d;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 4px 5px;
+}
+
+.botonBorrarTurno:hover {
+  background: #fee2e2;
+  border-color: #991b1b;
+}
+
+@media (max-width: 768px) {
+  .herramientasContainer {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,302 @@
+/* app/dashboard/planificacion-mes/planificacion.module.css */
+
+/* ==========================================================================
+   NOTA SOBRE DUPLICACIÓN:
+   Las clases del Gantt (.ganttScrollArea, .semanaBlock, .filaDia, .barra, etc.)
+   se repiten casi idénticas en semana.module.css y gestion.module.css.
+   Una mejora futura sería extraerlas a un archivo compartido:
+   app/dashboard/gantt.module.css
+   ========================================================================== */
+
+/* CONTENEDORES PRINCIPALES */
+
+.limitadorAncho {
+  width: 70%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 2rem 1.5rem 0;
+}
+
+/* CABECERA (NAVEGACIÓN DE MESES) */
+.navbarPlanificacion { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  background: white; 
+  padding: 15px 20px; 
+  border-radius: 10px; 
+  border: 2px solid #fde047; 
+  margin-bottom: 20px; 
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  gap: 0.5rem;
+}
+
+.titulosCentrados {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+
+.nombreEmpleado {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #111827;
+  font-weight: bold;
+}
+
+.tituloMesAnio { 
+  margin: 0; 
+  font-size: 1rem; 
+  color: #4b5563;
+  font-weight: normal;
+}
+
+.botonSecundario {
+  margin-top: 0.5rem;
+  padding: 0.55rem 1rem;
+  background: #1f2937;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.botonSecundario:hover {
+  background: #111827;
+}
+
+.botonNav { 
+  padding: 8px 14px; 
+  background-color: #fde047; 
+  border: 1px solid #ca8a04; 
+  border-radius: 6px; 
+  cursor: pointer; 
+  font-weight: bold;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.botonNav:hover { 
+  background-color: #fef08a; 
+}
+
+/* ZONA DEL GRÁFICO (DIAGRAMA DE GANTT) */
+.ganttScrollArea {
+  overflow-x: auto; /* Permite hacer scroll lateral si la pantalla es pequeña */
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border: 1px solid #e5e7eb;
+  padding: 15px;
+  margin-bottom: 30px;
+}
+
+.ganttInner {
+  min-width: 800px; /* Fuerza el scroll en móviles para no aplastar el gráfico */
+}
+
+.semanaBlock { 
+  margin-bottom: 20px; 
+  border: 1px solid #e5e7eb; 
+  border-radius: 8px; 
+  overflow: hidden; 
+}
+
+.semanaTitulo { 
+  display: flex;
+  background: #fde047; 
+  font-weight: bold; 
+  font-size: 13px; 
+  border-bottom: 1px solid #ca8a04; 
+  align-items: center;
+  height: 35px;
+}
+
+.semanaNombre {
+  width: 90px; 
+  padding-left: 15px;
+}
+
+.semanaHoras {
+  flex: 1;
+  display: flex;
+  height: 100%; /* Ocupa todo el alto de la cabecera amarilla */
+}
+
+/* El bloque que contiene 1 hora completa */
+.bloqueHora {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-left: 1px solid #ca8a04; /* Línea principal de la hora en punto */
+}
+
+/* El texto del número (6, 7, 8...) */
+.bloqueHora span {
+  color: #1f2937;
+  font-size: 11px;
+  padding-left: 4px;
+}
+
+/* La rayita de la media hora */
+.bloqueHora::after {
+  content: "";
+  position: absolute;
+  left: 50%; /* Se coloca exactamente en la mitad del bloque */
+  top: 60%; 
+  bottom: 0; 
+  width: 1px;
+  background-color: rgba(202, 138, 4, 0.4);
+}
+
+/* FILAS DE DÍAS Y BARRAS */
+.filaDia { display: flex; align-items: center; border-bottom: 1px solid #fafafa; height: 40px; }
+.diaLabel { width: 90px; font-size: 13px; font-weight: bold; padding-left: 15px; background: white; z-index: 5;}
+
+.carril { flex: 1; height: 28px; position: relative; background: #f9f9f9; border-radius: 4px; overflow: visible; cursor: pointer; }
+
+.carril:focus-visible {
+  outline: 2px solid #ca8a04;
+  outline-offset: 2px;
+}
+
+/* La malla de fondo dibuja rayas cada media hora */
+.malla { 
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
+  background-image: linear-gradient(to right, #e5e7eb 1px, transparent 1px);
+  /* 100% dividido entre 48 medias horas = 2.0833% */
+  background-size: 2.0833% 100%; 
+}
+
+.barra { position: absolute; top: 0; height: 100%; display: flex; align-items: center; justify-content: center; 
+  color: #1f2937; font-weight: bold; font-size: 11px; border-radius: 3px; box-shadow: inset 0 0 5px rgba(0,0,0,0.1); }
+
+.tooltipDia {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 8px);
+  min-width: 220px;
+  max-width: min(360px, 90vw);
+  background: #111827;
+  color: #f9fafb;
+  border-radius: 8px;
+  padding: 0.65rem 0.8rem;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.22);
+  display: none;
+  z-index: 20;
+}
+
+.tooltipDia strong,
+.tooltipDia span {
+  display: block;
+}
+
+.tooltipDia strong {
+  font-size: 0.8rem;
+  margin-bottom: 0.25rem;
+}
+
+.tooltipDia span {
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.carril:hover .tooltipDia,
+.tooltipVisible {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .navbarPlanificacion {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .botonNav,
+  .botonSecundario {
+    width: 100%;
+  }
+
+  .carril:hover .tooltipDia {
+    display: none;
+  }
+
+  .tooltipVisible {
+    display: block;
+  }
+}
+
+/* ZONA INFERIOR (RESUMEN Y LEYENDA DINÁMICA) */
+.zonaInferior {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap; /* En móviles, la leyenda bajará debajo del resumen */
+}
+
+.resumen, .leyenda {
+  background: white; 
+  padding: 20px; 
+  border-radius: 10px; 
+  border: 1px solid #e5e7eb; 
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  flex: 1; 
+  min-width: 300px;
+}
+
+.resumen h3, .leyenda h3 { 
+  margin-top: 0; 
+  margin-bottom: 15px; 
+  font-size: 1.1rem; 
+  border-bottom: 2px solid #fde047; 
+  padding-bottom: 5px; 
+}
+
+/* Estilos Tabla Resumen */
+.resumen table { width: 100%; border-collapse: collapse; font-size: 0.95rem;}
+.resumen th { text-align: left; border-bottom: 1px solid #e5e7eb; padding: 8px; color: #4b5563;}
+.resumen td { padding: 8px; border-bottom: 1px solid #fafafa; }
+.totalRow td { font-weight: bold; background: #fef7e0; border-top: 2px solid #ca8a04;}
+
+/* Estilos Leyenda Dinámica */
+.leyendaGrid { 
+  display: grid; 
+  /* Crea columnas automáticamente asegurando que el texto de cada turno tenga espacio */
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+  gap: 12px; 
+}
+
+.leyendaItem { 
+  display: flex; 
+  align-items: center; 
+  gap: 8px; 
+  font-size: 0.85rem; 
+  color: #374151;
+}
+
+.leyendaItem span { 
+  width: 16px; 
+  height: 16px; 
+  border-radius: 4px; 
+  border: 1px solid rgba(0,0,0,0.1); 
+  flex-shrink: 0;
+}
+
+/* RESPONSIVE MÓVIL */
+@media (max-width: 768px) {
+  .limitadorAncho { width: 100%; padding: 1rem 0.75rem 0; }
+  .navbarPlanificacion { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+  .titulosCentrados { order: -1; }
+  .botonNav { width: 100%; text-align: center; padding: 12px; font-size: 1rem; }
+  .botonSecundario { width: 100%; }
+  .nombreEmpleado { font-size: 1.2rem; }
+  .tituloMesAnio { font-size: 0.9rem; }
+  .semanaNombre { width: 50px !important; font-size: 10px !important; padding-left: 6px !important; }
+  .diaLabel { width: 50px !important; font-size: 10px !important; padding-left: 6px !important; }
+  .zonaInferior { flex-direction: column; }
+}

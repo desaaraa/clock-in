@@ -1,0 +1,189 @@
+/* app/dashboard/fichajes/fichajes.module.css */
+
+/* Panel de filtros */
+.panelFiltros {
+  background: #fff;
+  border: 2px solid #fde047;
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  margin-bottom: 28px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.panelFiltros label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-weight: 600;
+  font-size: 13px;
+  color: #374151;
+}
+
+.panelFiltros input[type="date"] {
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #1f2937;
+}
+
+.panelFiltros input[type="date"]:focus {
+  outline: none;
+  border-color: #ca8a04;
+}
+
+.botonBuscar {
+  background-color: #fde047;
+  color: #1f2937;
+  border: 2px solid #1f2937;
+  border-radius: 8px;
+  padding: 8px 22px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.botonBuscar:hover { background-color: #fef08a; }
+
+/* Sección */
+.seccion {
+  margin-bottom: 32px;
+}
+
+.seccionCabecera {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 3px solid #fde047;
+}
+
+.seccionCabecera h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.contadorFichajes {
+  background: #fde047;
+  color: #92400e;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 12px;
+  border: 1px solid #ca8a04;
+}
+
+/* Lista de cards */
+.listaFichajes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Card individual */
+.cardFichaje {
+  background: #fff;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 12px 18px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr auto;
+  align-items: center;
+  gap: 16px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.cardFichaje:hover {
+  border-color: #fde047;
+  box-shadow: 0 2px 8px rgba(202, 138, 4, 0.15);
+}
+
+.cardFichaje.abierto {
+  border-left: 4px solid #10b981;
+  background: #f0fdf4;
+}
+
+.nombreEmpleado {
+  font-weight: 700;
+  font-size: 14px;
+  color: #1f2937;
+}
+
+.datoCelda {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+}
+
+.etiqueta {
+  font-size: 10px;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.valor {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.badgeAbierto {
+  background: #d1fae5;
+  color: #065f46;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.badgeCerrado {
+  background: #f3f4f6;
+  color: #6b7280;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.vacio {
+  text-align: center;
+  color: #9ca3af;
+  padding: 32px;
+  font-style: italic;
+  background: #fff;
+  border: 1.5px dashed #e5e7eb;
+  border-radius: 10px;
+}
+
+.cargando {
+  text-align: center;
+  color: #6b7280;
+  padding: 40px;
+  font-size: 15px;
+}
+
+@media (max-width: 768px) {
+  .cardFichaje {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 8px;
+  }
+  .panelFiltros {
+    flex-direction: column;
+  }
+}

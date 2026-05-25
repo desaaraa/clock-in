@@ -1,0 +1,186 @@
+/* app/dashboard/notificaciones/notificaciones.module.css */
+
+.cabeceraPagina {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.cabeceraPagina h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: #1f2937;
+}
+
+.badge {
+  background: #ef4444;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+
+.botonMarcarTodas {
+  margin-bottom: 20px;
+  background: #fde047;
+  color: #1f2937;
+  border: 1.5px solid #ca8a04;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.botonMarcarTodas:hover { background: #fef08a; }
+
+.listaNotificaciones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 800px;
+}
+
+/* Tarjeta */
+.tarjeta {
+  background: #fff;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.tarjeta:hover {
+  box-shadow: 0 3px 12px rgba(202,138,4,0.12);
+}
+
+.tarjeta.noLeida {
+  border-left: 4px solid #fde047;
+  background: #fffef0;
+}
+
+.tarjeta.leida {
+  opacity: 0.65;
+}
+
+.cabeceraTarjeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+.tituloyTipo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.titulo {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.badgeTipo {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: #fde047;
+  color: #92400e;
+  border: 1px solid #ca8a04;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.badgeTipo.vacaciones { background: #dbeafe; color: #1d4ed8; border-color: #93c5fd; }
+.badgeTipo.cambio { background: #fde047; color: #92400e; border-color: #ca8a04; }
+.badgeTipo.respuesta { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
+
+.fecha {
+  font-size: 12px;
+  color: #9ca3af;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+.mensaje {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.55;
+  margin: 6px 0 12px;
+  padding: 10px 14px;
+  background: #fef7e0;
+  border-radius: 8px;
+  border-left: 3px solid #fde047;
+}
+
+.acciones {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.botonAceptar {
+  background: #10b981;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.botonAceptar:hover { background: #059669; }
+
+.botonRechazar {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.botonRechazar:hover { background: #dc2626; }
+
+.botonMarcar {
+  background: none;
+  color: #6b7280;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.botonMarcar:hover { background: #f3f4f6; }
+
+.vacio {
+  color: #9ca3af;
+  font-style: italic;
+  text-align: center;
+  padding: 48px 0;
+  font-size: 15px;
+}
