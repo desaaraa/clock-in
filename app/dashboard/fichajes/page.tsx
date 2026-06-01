@@ -114,11 +114,11 @@ export default function FichajesPage() {
               <FilasFichaje fichajes={propios} />
             </div>
 
-            {mostrarGestionHorarios && equipo.length > 0 && (
+            {mostrarGestionHorarios && (
               <div className={estilosFichajes.seccion}>
                 <div className={estilosFichajes.seccionCabecera}>
                   <h2>Fichajes de mi equipo</h2>
-                  <span className={estilosFichajes.contadorFichajes}>{equipo.length}</span>
+                  {equipo.length > 0 && <span className={estilosFichajes.contadorFichajes}>{equipo.length}</span>}
                 </div>
                 <FilasFichaje fichajes={equipo} />
               </div>

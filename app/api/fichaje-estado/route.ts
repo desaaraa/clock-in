@@ -1,20 +1,14 @@
 // app/api/fichaje-estado/route.ts
 import { NextResponse } from 'next/server';
 import { pool } from '@/app/lib/db';
+import { autoCerrarFichajesOlvidados } from '@/app/lib/fichajes';
 
 export async function POST(peticion: Request) {
   try {
     const { empleado_id } = await peticion.json();
 
-    // Auto-cerrar fichajes de más de 4 horas
-    await pool.query(
-      `UPDATE FICHAJES
-       SET FECHA_HORA_SALIDA = DATE_ADD(FECHA_HORA_ENTRADA, INTERVAL 4 HOUR)
-       WHERE EMPLEADO_ID = ?
-         AND FECHA_HORA_SALIDA IS NULL
-         AND NOW() >= DATE_ADD(FECHA_HORA_ENTRADA, INTERVAL 4 HOUR)`,
-      [empleado_id]
-    );
+    // Auto-cerrar fichajes donde han pasado más de 2h desde la hora de salida del turno
+    await autoCerrarFichajesOlvidados(empleado_id);
 
     // Comprobar si hay un fichaje abierto para este empleado
     const [filas]: any = await pool.query(

@@ -21,3 +21,5 @@ export async function POST(peticion: Request) {
     return NextResponse.json({ mensaje: "Error" }, { status: 500 });
   }
 }
+
+

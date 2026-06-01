@@ -1,29 +1,25 @@
 import { NextResponse } from 'next/server';
 import { pool } from '@/app/lib/db';
+import { minutos, crearFechaHora, buscarTurnoDeFichaje, autoCerrarFichajesOlvidados } from '@/app/lib/fichajes';
 
-const minutos = (valor: number) => valor * 60 * 1000;
 const TURNOS_NO_FICHABLES = new Set(['A', 'B', 'I', 'J', 'P0', 'P1', 'P13', 'P14',
    'P2', 'P3', 'P4', 'P5', 'P6', 'P7', 'P8', 'P9', 'Q', 'S', 'V', 'W']);
 
 // Coordenadas permitidas y radio en metros para fichar
-const LAT_PERMITIDA = 40.473027;
-const LON_PERMITIDA = -3.695763;
+const LAT_PERMITIDA = 40.28108;
+const LON_PERMITIDA = -3.67949;
 const RADIO_METROS = 200;
 
 //formula de Haversine para calcular distancia entre dos puntos geográficos
 const haversineMetros = (lat1: number, lon1: number, lat2: number, lon2: number) => {
-  const R = 6371000;
-  const toRad = (v: number) => (v * Math.PI) / 180;
-  const dLat = toRad(lat2 - lat1);
-  const dLon = toRad(lon2 - lon1);
+  const R = 6371000;                                    // Radio de la Tierra en metros
+  const toRad = (v: number) => (v * Math.PI) / 180;     // Convierte grados a radianes
+  const dLat = toRad(lat2 - lat1);                      // Diferencia de latitud en radianes
+  const dLon = toRad(lon2 - lon1);                      // Diferencia de longitud en radianes
   const a =
     Math.sin(dLat / 2) ** 2 +
     Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-};
-
-const crearFechaHora = (fecha: string, hora: string) => {
-  return new Date(`${fecha.split('T')[0]}T${hora}`);
 };
 
 const esTurnoFichable = (turno: any) => {
@@ -37,16 +33,6 @@ const buscarTurnoActual = (turnos: any[], ahora: Date) => {
     if (fin <= inicio) fin.setDate(fin.getDate() + 1);
 
     return ahora.getTime() >= inicio.getTime() - minutos(10) && ahora < fin;
-  });
-};
-
-const buscarTurnoDeFichaje = (turnos: any[], entrada: Date) => {
-  return turnos.find((turno) => {
-    const inicio = crearFechaHora(turno.FECHA, turno.HORA_ENTRADA);
-    const fin = crearFechaHora(turno.FECHA, turno.HORA_SALIDA);
-    if (fin <= inicio) fin.setDate(fin.getDate() + 1);
-
-    return entrada >= new Date(inicio.getTime() - minutos(10)) && entrada <= fin;
   });
 };
 
@@ -74,14 +60,7 @@ export async function POST(peticion: Request) {
       );
     }
 
-    await pool.query(
-      `UPDATE FICHAJES
-       SET FECHA_HORA_SALIDA = DATE_ADD(FECHA_HORA_ENTRADA, INTERVAL 4 HOUR)
-       WHERE EMPLEADO_ID = ?
-         AND FECHA_HORA_SALIDA IS NULL
-         AND NOW() >= DATE_ADD(FECHA_HORA_ENTRADA, INTERVAL 4 HOUR)`,
-      [empleado_id]
-    );
+    await autoCerrarFichajesOlvidados(empleado_id);
 
     const [reloj]: any = await pool.query('SELECT NOW() AS AHORA');
     const ahora = new Date(reloj[0].AHORA.replace(' ', 'T'));
